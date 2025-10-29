@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+背景图
+<!-- 
+背景图
+网页中，使用背景图实现装饰性的图片效果。
+属性名：background-image（bgi)
+属性值：url(背景图URL）
+div {
+width:400px;
+height:400px;
+background-image:url(./images/1.png);
+} -->
+背景图平铺方式
+<!-- 背景图平铺方式
+属性名：background-repeat（bgr)
+
+no-repeat   不平铺
+repeat      平铺（默认效果）
+repeat-x    水平方向平铺
+repeat-y    垂直方向平铺 -->
+背景图位置
+<!-- 背景图位置
+属性名：background-position（bgp
+属性值：水平方向位置垂直方向位置
+
+left    左侧
+right   右侧
+center  居中
+top     顶部
+bottom  底部
+坐标（数字+px，正负都可以）
+div {
+width:400px;
+height:400px;
+background-color:pink;
+background-image:url(./images/1.png);
+background-repeat:no-repeat;
+background-position:center bottom;
+background-position:50px -100px;
+background-position:5opx center;
+提示：
+关键字取值方式写法，可以颠倒取值顺序
+可以只写一个关键字，另一个方向默认为居中；数字只写一个值表示水平方向，垂直方向为居中
+} -->
+背景图缩放
+<!-- 
+背景图缩放
+作用：设置背景图大小
+属性名：background-size（bgz)
+常用属性值：
+关键字
+cover：等比例缩放背景图片以完全覆盖背景区，可能背景图片部分看不见
+contain：等比例缩放背景图片以完全装入背景区，可能背景区部分空白
+百分比：根据盒子尺寸计算图片大小
+数字+单位（例如：px) -->
+背景图固定
+<!-- 
+背景图固定
+作用：背景不会随着元素的内容滚动。
+属性名：background-attachment（bga）
+属性值：fixed
+body {
+background-image:url(./images/bg.jpg);
+background-repeat: no-repeat;
+background-attachment:fixed; -->
+背景复合属性
+<!-- 
+背景复合属性
+属性名：background（bg)
+属性值：背景色背景图背景图平铺方式背景图位置/背景图缩放背景图固定（空格隔开各个属性值，不区分顺序） -->
+display
+<!-- 
+display：
+块级    “独占一行；宽高属性生效；默认宽度是父级的100%”      block 
+行内    “一行共存多个；宽高属性不生效；宽高由内容撑开”      inline 
+行内块  “一行共存多个；宽高属性生效；宽高默认由内容撑开”     inline-block
+-->
+

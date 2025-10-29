@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="iconfont/iconfont.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      li {
+        list-style: none;
+      }
+      .container {
+        height: 700px;
+        width: 1000px;
+        margin: 100px auto;
+        background-color: pink;
+        position: relative;
+      }
+      ul li {
+        height: 80%;
+        width: 100%;
+
+        display: flex;
+        position: relative;
+      }
+      ul li img {
+        width: 1000px;
+        height: 640px;
+        position: absolute;
+      }
+      ul li p {
+        position: absolute;
+        width: 960px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 18px;
+        color: red;
+        left: 40px;
+        top: 650px;
+      }
+      .left,
+      .right {
+        display: none;
+        width: 60px;
+        height: 60px;
+        color: rgba(0, 0, 0, 0.3);
+        background-color: bisque;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-100%);
+      }
+      .left {
+        border-radius: 0 30px 30px 0;
+      }
+      .right {
+        border-radius: 30px 0 0 30px;
+        right: 0;
+      }
+      .container:hover .right,
+      .container:hover .left {
+        display: block;
+      }
+      .iconfont {
+        font-size: 60px;
+        border-bottom: none;
+      }
+      ol {
+        position: absolute;
+        bottom: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 20px;
+        background-color: rgba(255, 255, 255, 0.3);
+        display: flex;
+        border-radius: 10px;
+      }
+      ol li {
+        width: 12px;
+        height: 12px;
+        background-color: #fff;
+        border-radius: 50%;
+        margin: 3px 5px;
+      }
+
+      .active {
+        background-color: orange;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <ul>
+        <li>
+          <p>这是关于他的描述</p>
+          <img src="./pic/1.jpg" alt="1" title="图片1" />
+        </li>
+      </ul>
+      <a href="#" class="left">
+        <strong class="iconfont icon-zuoce"></strong>
+      </a>
+      <a href="#" class="right">
+        <strong class="iconfont icon-youce"></strong>
+      </a>
+      <ol>
+        
+      </ol>
+    </div>
+    <div>
+      DOM LO 事件源.on事件=function({) DOM L2
+      事件源.addEventListener(事件，事件处理函数》 区别：
+      on方式会被覆盖，addEventListener方式可绑定多次，拥有事件更多特性，推荐使用
+    </div>
+    <div>鼠标触发 click 鼠标点击 mouseenter 鼠 标 经过 mouseleave 鼠标离开</div>
+    <div>表单获得光标 focus 获得焦点 blur 失去焦点</div>
+    <div>键盘触发 Keydown键盘按下触发 Keyup 键盘抬起触发</div>
+    <div>表单输入触发 input 用户输入事件</div>
+  </body>
+  <script>
+    const obj = [
+      { src: "./pic/1.jpg", alt: "1", title: "图片1", text: "41" },
+      { src: "./pic/2.jpg", alt: "2", title: "图片2", text: "61" },
+      { src: "./pic/3.jpg", alt: "3", title: "图片3", text: "41" },
+      { src: "./pic/4.jpg", alt: "4", title: "图片4", text: "765" },
+    ];
+    const img = document.querySelector("img");
+    const p = document.querySelector("p");
+
+    // console.log(p);
+    // img.title=obj[1].title
+    // img.src=obj[1].src
+
+    let i = 0;
+
+    
+    // 动态生成小圆点
+    const ol = document.querySelector("ol");
+    obj.forEach((_, index) => {
+      const li = document.createElement("li");
+      if (index === 0) li.classList.add("active");
+      li.addEventListener("click", () => {
+        i = index;
+        change();
+      });
+      ol.appendChild(li);
+    });
+    //定时器
+    let timekeeper = setInterval(function () {
+      i++;
+      if (i >= obj.length) {
+        i = 0;
+      }
+      change();
+    }, 5000);
+    const left = document.querySelector(".left");
+    console.log(left);
+    const right = document.querySelector(".right");
+    console.log(right);
+
+    //左按钮
+    left.addEventListener("click", function () {
+      i--;
+      if (i < 0) {
+        i = obj.length - 1;
+      }
+      change();
+    });
+
+    //右侧按钮
+    right.addEventListener("click", function () {
+      i++;
+      if (i >= obj.length) {
+        i = 0;
+      }
+      change();
+    });
+
+    //鼠标进入停止
+    const container = document.querySelector(".container");
+    container.addEventListener("mouseenter", function () {
+      clearInterval(timekeeper);
+    });
+
+    //鼠标出去继续
+    container.addEventListener("mouseleave", function () {
+      clearInterval(timekeeper);
+      timekeeper = setInterval(function () {
+        right.click();
+      }, 5000);
+    });
+    //小圆点
+
+    //切换页面函数
+    function change() {
+      const li = document.querySelector(`ol li:nth-child(${i + 1})`);
+      const active = document.querySelector(".active");
+      //   console.log(active);
+      active.classList.remove("active");
+      li.classList.add("active");
+      //   console.log(li)
+      img.title = obj[i].title;
+      img.src = obj[i].src;
+      img.alt = obj[i].alt;
+      p.innerHTML = obj[i].text;
+    }
+  </script>
+</html>

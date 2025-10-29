@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>标签切换图片展示</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .tab-container {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            margin-right: 5px;
+            border-radius: 5px 5px 0 0;
+        }
+        
+        .tab.active {
+            background-color: #fff;
+            border-bottom: 1px solid #fff;
+            margin-bottom: -1px;
+            font-weight: bold;
+        }
+        
+        .content-container {
+            display: flex;
+            width: 100%;
+            height: 400px; /* 可以根据需要调整高度 */
+        }
+        
+        .main-image {
+            flex: 1;
+            margin-right: 10px;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .main-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .nail-container {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 10px;
+        }
+        
+        .nail {
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .nail img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <div class="tab-container">
+        <div class="tab active" onclick="switchTab(1)">标签1</div>
+        <div class="tab" onclick="switchTab(2)">标签2</div>
+        <div class="tab" onclick="switchTab(3)">标签3</div>
+        <div class="tab" onclick="switchTab(4)">标签4</div>
+    </div>
+    
+    <div class="content-container" id="content1">
+        <div class="main-image">
+            <img src="./pic/1.jpg" alt="主图1">
+        </div>
+        <div class="nail-container">
+            <div class="nail">
+                <img src="./pic/1.jpg" alt="缩略图1-1">
+            </div>
+            <div class="nail">
+                <img src="./pic/1.jpg" alt="缩略图1-2">
+            </div>
+            <div class="nail">
+                <img src="./pic/1.jpg" alt="缩略图1-3">
+            </div>
+            <div class="nail">
+                <img src="./pic/1.jpg" alt="缩略图1-4">
+            </div>
+        </div>
+    </div>
+    
+    <div class="content-container" id="content2" style="display: none;">
+        <div class="main-image">
+            <img src="./pic/2.jpg" alt="主图2">
+        </div>
+        <div class="nail-container">
+            <div class="nail">
+                <img src="./pic/2.jpg" alt="缩略图2-1">
+            </div>
+            <div class="nail">
+                <img src="./pic/2.jpg" alt="缩略图2-2">
+            </div>
+            <div class="nail">
+                <img src="./pic/2.jpg" alt="缩略图2-3">
+            </div>
+            <div class="nail">
+                <img src="./pic/2.jpg" alt="缩略图2-4">
+            </div>
+        </div>
+    </div>
+    
+    <div class="content-container" id="content3" style="display: none;">
+        <div class="main-image">
+            <img src="./pic/3.jpg" alt="主图3">
+        </div>
+        <div class="nail-container">
+            <div class="nail">
+                <img src="./pic/3.jpg" alt="缩略图3-1">
+            </div>
+            <div class="nail">
+                <img src="./pic/3.jpg" alt="缩略图3-2">
+            </div>
+            <div class="nail">
+                <img src="./pic/3.jpg" alt="缩略图3-3">
+            </div>
+            <div class="nail">
+                <img src="./pic/3.jpg" alt="缩略图3-4">
+            </div>
+        </div>
+    </div>
+    
+    <div class="content-container" id="content4" style="display: none;">
+        <div class="main-image">
+            <img src="./pic/4.jpg" alt="主图4">
+        </div>
+        <div class="nail-container">
+            <div class="nail">
+                <img src="./pic/4.jpg" alt="缩略图4-1">
+            </div>
+            <div class="nail">
+                <img src="./pic/4.jpg" alt="缩略图4-2">
+            </div>
+            <div class="nail">
+                <img src="./pic/4.jpg" alt="缩略图4-3">
+            </div>
+            <div class="nail">
+                <img src="./pic/4.jpg" alt="缩略图4-4">
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function switchTab(tabNumber) {
+            // 隐藏所有内容容器
+            document.querySelectorAll('.content-container').forEach(container => {
+                container.style.display = 'none';
+            });
+            
+            // 显示选中的内容容器
+            document.getElementById('content' + tabNumber).style.display = 'flex';
+            
+            // 更新标签样式
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.querySelector(`.tab:nth-child(${tabNumber})`).classList.add('active');
+        }
+    </script>
+</body>
+</html>

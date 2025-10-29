@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      目标：能够说出事件流经过的2个阶段 事件流指的是事件完整执行过程中的流动路径
+      说明：假设页面里有个div，当触发事件时，会经历两个阶段，分别是捕获阶段、冒泡阶段
+      简单来说：捕获阶段是从父到子冒泡阶段是从子到父
+      实际工作都是使用事件冒泡为主
+    </div>
+    <div>
+      1.2 事件捕获 目标：简单了解事件捕获执行过程 ●事件捕获概念：
+      从DOM的根元素开始去执行对应的事件（从外到里）
+      事件捕获需要写对应代码才能看到效果
+      代码：DOM.addEventListener（事件类型，事件处理函数，是否使用捕获机制）
+      ，说明： >addEventListener第三个参数传入true代表是捕获阶段触发（很少使用）
+      >若传入false代表冒泡阶段触发，默认就是false
+      若是用LO事件监听，则只有冒泡阶段，没有捕获
+    </div>
+    <div>
+      1.3事件冒泡 目标：能够说出事件冒泡的执行过程 事件冒泡概念：
+      当一个元素的事件被触发时，同样的事件将会在该元素的所有祖先元素中依次被触发。这一过程被称为事件冒泡
+      ●简单理解：当一个元素触发事件后，会依次向上调用所有父级元素的同名事件
+      事件冒泡是默认存在的 L2事件监听第三个参数是false，或者默认都是冒泡
+    </div>
+
+    <div>
+      1.4阻止冒泡 目标：能够写出阻止冒泡的代码
+      问题：因为默认就有冒泡模式的存在，所以容易导致事件影响到父级元素
+      需求：若想把事件就限制在当前元素内，就需要阻止事件冒泡
+      前提：阻止事件冒泡需要拿到事件对象 语法: 事件对象.stopPropagation()
+      ●注意：此方法可以阻断事件流动传播，不光在冒泡阶段有效，捕获阶段也有效
+
+      我们某些情况下需要阻止默认行为的发生，比如阻止链接的跳转，表单域跳转
+      语法： e.preventDefault()
+    </div>
+    <div>
+      1.5 解绑事件 addEventListener方式，必须使用：
+      removeEventListener(事件类型，事件处理函数，[获取捕获或者冒泡阶段]) 例如：
+      function fn(){ alert('点击了') 川绑定事件 btn.addEventListener('click',fn)
+      川解绑事件 btn.removeEventListener('click',fn) 注意：匿名函数无法被解绑
+    </div>
+    <div>
+      两种注册事件的区别 传统on注册（LO）
+      >同一个对象，后面注册的事件会覆盖前面注册（同一个事件）
+      >直接使用null覆盖偶就可以实现事件的解绑 >都是冒泡阶段执行的
+      ●事件监听注册（L2）
+      >语法：addEventListener(事件类型，事件处理函数，是否使用捕获）
+      后面注册的事件不会覆盖前面注册的事件（同一个事件）
+      可以通过第三个参数去确定是在冒泡或者捕获阶段执行
+      必须使用removeEventListener(事件类型，事件处理函数，获取捕获或者冒泡阶段）
+      >匿名函数无法被解绑
+    </div>
+    <form action="www.baidu.com">
+      <input type="submit" name="提交" id="">
+    </form>
+    <script>
+      const form =document.querySelector('form')
+      form.addEventListener('submit',function(e){
+        //阻止默认行为
+        e.preventDefault();
+        
+      })
+    </script>
+  </body>
+</html>

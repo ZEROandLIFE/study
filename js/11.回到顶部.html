@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>回到顶部按钮</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      /* 第一个盒子（触发回到顶部按钮显示的区域） */
+      .first-box {
+        height: 500px;
+        background-color: #f0f0f0;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      /* 后续内容（用于测试滚动） */
+      .content {
+        height: 2000px;
+        background-color: #e0e0ff;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      /* 回到顶部按钮（默认隐藏） */
+      .back-to-top {
+        position: fixed;
+        right: 100px;
+        top: 100px;
+        width: 50px;
+        height: 50px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        opacity: 0; /* 默认隐藏 */
+        transition: all 0.5s;
+      }
+
+      /* 当滚动超过第一个盒子时显示按钮（纯CSS实现） */
+      .back-to-top.show {
+        display: flex;
+      }
+      .header {
+        position: fixed;
+        top: -80px;
+        left: 0;
+        width: 100%;
+        height: 80px;
+        background-color: purple;
+        text-align: center;
+        color: #fff;
+        line-height: 80px;
+        font-size: 3Opx;
+        transition: all 0.3s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">我是顶部导航栏</div>
+    <!-- 第一个盒子 -->
+    <div class="first-box">
+      <h1>第一个盒子</h1>
+      <p>向下滚动，超过这个盒子的底部时，右下角会显示“回到顶部”按钮。</p>
+    </div>
+
+    <!-- 后续内容 -->
+    <div class="content">
+      <h2>其他内容</h2>
+      <p>这里是一些长内容，用于测试滚动效果...</p>
+    </div>
+
+    <button class="back-to-top">↑</button>
+  </body>
+  <script>
+    const button = document.querySelector("button");
+    const content = document.querySelector(".content");
+    const header= document.querySelector(".header");
+    const firstBox = document.querySelector('.first-box');
+    // const firstBoxBottom = firstBox.offsetTop + firstBox.offsetHeight; // 计算第一个盒子的底部位置
+    button.addEventListener("click", function () {
+      document.documentElement.scrollTop = 0;
+    });
+    window.addEventListener("scroll", function () {
+      const n = document.documentElement.scrollTop;
+      button.style.opacity = n >= content.offsetTop ? 1 : 0;
+      //其他写法
+      // const scrollY = window.scrollY || document.documentElement.scrollTop;
+      // button.style.opacity = scrollY >= firstBoxBottom ? '1' : '0';
+      header.style.top= n>= content.offsetTop? '0px':'-80px'
+      console.log(content.offsetTop);
+      console.log(n)
+      console.log(n>= content.offsetTop)
+    });
+  </script>
+</html>

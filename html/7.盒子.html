@@ -1,0 +1,161 @@
+盒子模型-组成
+<!-- 盒子模型重要组成部分：
+内容区域 -width & height
+内边距-padding（出现在内容与盒子边缘之间）
+边框线- border
+外边距-margin（出现在盒子外面） -->
+
+盒子模型-边框线
+<!-- 属性名：border（bd）
+属性值：边框线粗细线条样式颜色（不区分顺序）
+常用线条样式
+solid   实线
+dashed  虚线
+dotted  点线 -->
+
+盒子模型-边框线
+<!-- 设置单方向边框线
+属性名：border-方位名词（bd+方位名词首字母，例如，bdl）
+属性值：边框线粗细线条样式颜色（不区分顺序）
+div {
+border-top:     2px solid red;
+border-right:   3px dashed green;
+border-bottom:  4px dotted blue;
+border-left:    5px solid orange;
+width:200px;
+height:200px;
+background-color:pink;
+} -->
+
+盒子模型-内边距
+<!-- 作用：设置内容与盒子边缘之间的距离。
+属性名：padding/padding-方位名词
+div {
+/*四个方向内边距相同*/
+padding:30px;
+/*单独设置一个方向内边距*/
+padding-top:    10px;
+padding-right:  20px;
+padding-bottom: 40px;
+padding-left:   80px;
+width:200px;
+height:200px;
+background-color:pink;
+} -->
+盒子模型-外边距
+<!-- 盒子模型-外边距
+作用：拉开两个盒子之间的距离
+属性名：margin
+提示：与padding属性值写法、含义相同 -->
+盒子模型-尺寸计算 撑大盒子处理
+<!-- 默认情况
+盒子尺寸=内容尺寸+border尺寸+内边距尺寸
+结论：给盒子加border/padding会撑大盒子
+解决
+手动做减法，减掉border/padding的尺寸
+内减模式：box-sizing:border-box -->
+版心居中
+<!-- div{
+/*版心居中要求：盒子要有宽度*/
+width:1000px;
+height:200px;
+background-color:pink;
+/*外边距不会撑大盒子*/
+/*
+margin:50px;*/
+/* margin-left:1eopx;*/
+/* margin:50px 10opx;*/
+margin: 0 auto;
+}  -->
+清除默认样式
+<!-- * {
+margin:0;
+padding: 0;
+box-sizing: border-box;
+}
+去掉列表的项目符号*/
+li {
+    list-style: none;
+} -->
+盒子模型-元素溢出
+<!-- 作用：控制溢出元素的内容的显示方式。
+属性名：overflow
+hidden      溢出隐藏
+scroll      溢出滚动（无论是否溢出，都显示滚动条位置）
+auto        溢出滚动（溢出才显示滚动条位置）
+div {
+width:200px;
+height:200px;
+background-color:pink;
+overflow:hidden;
+} -->
+外边距问题-合并现象
+<!-- 场景：垂直排列的兄弟元素，上下margin会合并
+现象：取两个margin中的较大值生效 -->
+
+外边距问题-塌陷问题
+<!-- 场景：父子级的标签，子级的添加上外边距会产生塌陷问题
+现象：导致父级一起向下移动 -->
+<!-- <style>
+    .father {
+        width: 300px;
+        height: 300px;
+        background-color:pink;
+    }
+        .son {
+            width: 100px;
+            height: 100px;
+            background-color:orange;
+            margin-top: 50px;
+        }
+</style>
+    <div class="father">
+        <div class="son">son</div>
+    </div></div> -->
+解决方法：
+<!-- 
+取消子级margin，父级设置padding
+父级设置overflow:hidden
+父级设置border-top 
+-->
+
+行内元素-内外边距问题
+<!-- 场景：行内元素添加margin和padding，无法改变元素垂直位置
+解决方法：给行内元素添加line-height可以改变垂直位置
+span {
+/*margin和padding属性，无法改变垂直位置*/
+margin:50px;
+padding:20px;
+/*行高可以改变垂直位置*
+line-height:100px;
+} -->
+
+盒子模型-圆角
+<!-- 作用：设置元素的外边框为圆角。
+属性名：border-radius
+属性值：数字+px/百分比
+提示：属性值是圆角半径 
+给正方形盒子设置圆角属性值为宽高的一半/50%（圆）
+给长方形盒子设置圆角属性值为盒子高度的一半（胶囊）
+div {
+width:200px;
+height:80px;
+background-color:orange;
+border-radius:40px;
+}
+-->
+盒子模型-阴影（拓展）
+
+<!-- 作用：给元素设置阴影效果
+属性名：box-shadow
+属性值：X轴偏移量 Y轴偏移量 模糊半径 扩散半径 颜色 内外阴影
+注意：
+X轴偏移量和Y轴偏移量必须书写
+默认是外阴影，内阴影需要添加inset 
+box-shadow:2px 5px 10px 1px rgba(θ,0,0,0.5);
+-->
+盒子的网格布局
+    <!-- display: grid;                  /* 启用网格布局 */
+    grid-template-columns: repeat(2, 1fr); /* 2列等宽网格 */
+    grid-template-rows: repeat(2, 1fr);    /* 2行等高网格 */
+    gap: 10px;                      /* 网格间隙10像素 */ -->

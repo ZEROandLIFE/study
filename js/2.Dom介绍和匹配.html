@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="concept">
+        1.2什么是DOM
+        DOM(Document Object Model——文档对象模型)是用来呈现以及与任意HTML或XML文档交互的API
+        白话文:DOM是浏览器提供的一套专门用来操作网页内容的功能
+        
+        DOM作用 开发网页内容特效和实现用户交互
+        
+        DOM树是什么
+        >将HTML文档以树状结构直观的表现出来,我们称之为文档树或DOM树
+        描述网页内容关系的名词
+        >作用:文档树直观的体现了标签与标签之间的关系
+        
+        DOM对象:浏览器根据html标签生成的JS对象
+        所有的标签属性都可以在这个对象上面找到
+        修改这个对象的属性会自动映射到标签身上
+    </div>
+
+    <div class="first">
+        1.选择匹配的第一个元素
+        语法:document.querySelector('css选择器')
+        2.选择匹配的全部元素:document.querySelectorAll('css选择器')
+        得到的是一个伪数组:有长度有索引号的数组,但是没有pop()push()等数组方法,想要得到里面的每一个对象,则需要遍历(for)的方式获得。哪怕只有一个元素,通过querySelectAll()获取过来的也是一个伪数组,里面只有一个元素而已
+    </div>
+    <div class="know">
+        根据id获取一个元素
+        document.getElementById('nav')
+        根据 标签获取一类元素
+        获取页面 所有div
+        document.getElementsByTagName('div')
+        根据类名获取元素 获取页面所有类名为w的
+        document.getElementsByClassName('w')
+    </div>
+    <div class="two">
+        操作元素内容
+        目标:能够修改元素的文本更换内容
+        DOM对象都是根据标签生成的,所以操作标签,本质上就是操作DOM对象。
+        就是操作对象使用的点语法。
+        如果想要修改标签元素的里面的内容,则可以使用如下几种方式:
+        1.对象.innerText属性
+        元素innerText 属性
+        将文本内容添加/更新到任意标签位置
+        显示纯文本,不解析标签
+        
+        2.对象.innerHTML属性
+
+    </div>
+   
+    <script>
+    // 1.获取匹配的第一个东西
+    //    const box=document.querySelector('.first')
+
+    // 2.选择匹配的全部元素
+    //    const box=document.querySelectorAll('div')
+    //    for(let i=0;i<box.length;i++)
+    //    {
+    //     console.log(box[i])
+    //    }
+    //    console.log(box)
+
+    // 3.修改内容
+    const text=document.querySelector('.two')
+    console.log(text.innerText)
+    text.innerText='<strong>修改内容</strong>'//不识别标签
+    console.log(text.innerText)
+
+    const html=document.querySelector('.two')
+    console.log(html.innerHTML)
+    html.innerHTML= '<strong>修改内容</strong>'//识别标签
+    console.log(html.innerHTML)
+
+
+
+
+    </script>
+</body>
+</html>
