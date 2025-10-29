@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./node_modules/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <script>
+        const cname='西安市'
+        const pname='陕西省'
+        axios({
+            // url:'目标地址'
+            url:'http://hmajax.itheima.net/api/area',
+            // params:{
+            //     参数名：值  同名可以省略
+            // }
+            params:{
+                pname,
+                cname
+                // 或者 pname:pname,cname:cname注意顺序
+            },
+            // method:'请求方法' 提交post，获取get
+            method:'',
+            // data:{
+            //     参数名:值  同名可以省略
+            // }
+            data:{
+                
+            }
+        }).then((result)=>{
+            console.log(result);
+        }).catch((error)=>{
+            console.log(error);
+        })
+        
+    </script>
+  </body>
+</html>

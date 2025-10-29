@@ -1,0 +1,60 @@
+平面转换-平移 translate(x,y)
+<!-- 
+transform：translate（x轴移动距离，Y轴移动距离）;
+取值    1.像素单位数值    2.百分比（参照盒子自身尺寸计算结果）  3.正负均可 -->
+<!-- translate（）只写一个值，表示沿着X轴移动
+单独设置X或Y轴移动距离：translateX（）或translateY（） -->
+使用平移来完成居中translate(50%,50%)。{
+    left：50%
+    right：50%
+    transform:translate(50%,50%)
+}向左向上移动
+
+旋转
+transform:rotate(旋转角度);
+<!-- 角度单位是deg
+取值正负均可
+取值为正，顺时针旋转
+取值为负，逆时针旋转 -->
+平面转换-改变转换原点transform-origin
+<!-- 默认情况下，转换原点是盒子中心点
+属性
+transform-origin：水平原点位置 垂直原点位置；
+取值
+1.方位名词(left、top、right、bottom、center)
+2.像素单位数值
+3.百分比 -->
+多重转换技巧：先平移再旋转,则会使边走边转，反过来会很神奇
+<!-- transform:translate() rotate(); -->
+<!-- 旋转会改变坐标轴向
+多重转换：以第一种转换形态的坐标轴为准 而且必须写一块，不然会覆盖-->
+平面转换-缩放 transform:scale()
+<!-- transform:scale(缩放倍数）;
+transform：scale(x轴缩放倍数，Y轴缩放倍数）;
+通常，只为scale（）设置一个值，表示X轴和Y轴等比例缩放
+取值大于1表示放大，取值小于1表示缩小 -->
+平面转换-倾斜 transform: skew();
+<!-- transform: skew();
+取值 角度度数deg -->
+渐变
+<!-- 渐变是多个颜色逐渐变化的效果，一般用于设置盒子背景
+线性渐变 径向渐变 -->
+
+线性渐变
+<!-- 属性
+background-image:linear-gradient{
+渐变方向，
+颜色1终点位置
+颜色2终点位置，
+}
+渐变方向：可选：to 方位名词 角度度数
+终点位置：可选 百分比 -->
+径向渐变
+<!-- 作用：给按钮添加高光效果
+background-image:radial-gradient(
+半径at圆心位置，
+颜色1 终点位置，
+颜色2 终点位置，
+取值
+半径可以是2条，则为椭圆
+圆心位置取值：像素单位数值/百分比/方位名词 -->

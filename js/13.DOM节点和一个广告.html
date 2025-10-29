@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .father {
+        width: 500px;
+        height: 300px;
+        background-color: orange;
+        position: relative;
+        margin: 0 auto;
+      }
+      .son {
+        width: 100px;
+        height: 40px;
+        background-color: pink;
+        font-size: 13px;
+        line-height: 40px;
+        text-align: center;
+        right: 10px;
+        top: 10px;
+        position: absolute;
+        border-radius: 20%;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      DOM节点 DOM树里每一个内容都称之为节点,元素节点,所有的标签比如body、div
+      html是根节点,属性节点 所有的属性比如href,文本节点所有的文本 ，其他
+    </div>
+    <div>
+      2.2 查找节点 父节点查找： parentNode属性
+      返回最近一级的父节点,找不到返回为null 子元素.parentNode
+    </div>
+    <div>
+      2.2 查找节点 子节点查找： childNodes
+      获得所有子节点、包括文本节点（空格、换行）、注释节点等
+      children属性（重点） 仅获得所有元素节点 返回的还是一个伪数组
+      父元素.children
+    </div>
+    <div>
+      2.2 查找节点 兄弟关系查找： 1.下一个兄弟节点 nextElementSibling属性
+      2.上一个兄弟节点 previousElementsibling属性
+    </div>
+    <div>
+      2.3 增加节点 1.创建节点
+      即创造出一个新的网页元素，再添加到网页内，一般先创建节点，然后插入节点
+      创建元素节点方法： 创造一个新的元素节点 document.createElement('标签名'）
+    </div>
+    <div>
+      插入到父元素中某个子元素的前面 插入到某个子元素的前面
+      父元素.insertBefore（要插入的元素，在哪个元素前面）
+    </div>
+    <div>
+      2.3 增加节点 特殊情况下，我们新增节点，按照如下操作 复制一个原有的节点
+      把复制的节点放入到指定的元素内部，克隆一个已有的元素节点
+      元素.cloneNode（布尔值）
+      cloneNode会克隆出一个跟原标签一样的元素，括号内传入布尔值
+      若为true，则代表克隆时会包含后代节点一起克隆
+      若为false，则代表克隆时不包含后代节点 默认为false
+    </div>
+    <div>
+      2.4 删除节点 目标：能够具备根据需求删除节点的能力
+      若一个节点在页面中已不需要时，可以删除它
+      在JavaScript原生DOM操作中，要删除元素必须通过父元素删除 语法
+      父元素.removeChild（要删除的元素） 注： 如不存在父子关系则删除不成功
+      删除节点和隐藏节点（display:none）有区别的：隐藏节点还是存在的，但是删除，则从html中删除节点
+    </div>
+    <div class="father">
+      <div class="son">5秒后可跳过</div>
+    </div>
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+    </ul>
+  </body>
+  <script>
+    //神秘小广告
+    const son = document.querySelector(".son");
+    const father = son.parentNode;
+    console.log(son);
+    console.log(father);
+    let skip = false;
+    let i = 5;
+    let timeKeeper = setInterval(function () {
+      i--;
+      son.innerHTML = `${i}秒后可跳过`;
+      if (i <= 0) {
+        clearInterval(timeKeeper);
+        skip = true;
+        son.innerHTML = `跳过`;
+      }
+    }, 1000);
+    son.addEventListener("click", function (e) {
+      if (!skip) e.preventDefault();
+      else father.style.display = "none";
+    });
+
+    //获取孩子
+    const ul = document.querySelector("ul");
+    console.log(ul.children);
+
+    const li2 = ul.children[1];
+    const li1 = li2.previousElementSibling;
+    const li3 = li2.nextElementSibling;
+    console.log(li2);
+    console.log(li3);
+    console.log(li1);
+
+    //追加节点
+    const li = document.createElement("li");
+    li.innerHTML = "我是新节点";
+    ul.appendChild(li);
+
+    ul.insertBefore(li, ul.children[3]); //同一个节点只能放在一个位置
+
+    const cloneli=ul.children[2].cloneNode(true)
+    ul.appendChild(cloneli)
+    ul.removeChild(ul.children[ul.children.length-2])
+    
+  </script>
+</html>

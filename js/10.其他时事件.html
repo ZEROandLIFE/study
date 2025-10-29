@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      //   const button = document.querySelector("button");
+      //   button.addEventListener("click", function () {
+      //     alert(11);
+      //   });
+      //   window.addEventListener("load", function () {
+      //     const button = document.querySelector("button");
+      //     button.addEventListener("click", function () {
+      //       alert(11);
+      //     });
+      //   });
+      //   img.addEventListener("load", function () { });
+      document.addEventListener("DOMContentLoaded", function () {
+        const button = document.querySelector("button");
+        button.addEventListener("click", function () {
+          alert(11);
+        });
+      });
+    </script>
+    <style>
+      body {
+        height: 3000px;
+      }
+      span {
+        height: 40px;
+        display: block;
+        overflow: scroll;
+      }
+    </style>
+  </head>
+  <body>
+    <button>点击</button>
+    <span
+      >3.1页面加载事件
+      加载外部资源（如图片、外联CSS和JavaScript等）加载完毕时触发的事件
+      ，为什么要学? 有些时候需要等页面资源全部处理完了做一些事情
+      老代码喜欢把script写在head中，这时候直接找dom元素找不到 事件名：load
+      监听页面所有资源加载完毕： 给window 添加 load事件
+      window.addEventListener('load',function(){ //执行的操作 })
+      注意：不光可以监听整个页面资源加载完毕，也可以针对某个资源绑定load事件
+    </span>
+    <span
+      >当初始的HTML文档被完全加载和解析完成之后，DOMContentLoaded事件被触发，而无需等待样式表、图像等完全加载
+      事件名：DOMContentLoaded 监听页面DOM加载完毕：
+      给document添加DOMContentLoaded事件
+      document.addEventListener('DOMContentLoaded',function)
+    </span>
+    <span>
+      3.2页面滚动事件 滚动条在滚动的时候持续触发的事件 为什么要学？
+      很多网页需要检测用户把页面滚动到某个区域后做一些处理，比如固定导航栏，比如返回顶部
+      事件名：scroll 监听整个页面滚动： 页面滚动事件
+      window.addEventListener('scroll',function(){ /执行的操作 })
+      给window或document添加scroll事件
+      监听某个元素的内部滚动直接给某个元素加即可
+    </span>
+    <span>
+      3.2页面滚动事件-获取位置 scrollLeft和scrollTop（属性） 获取被卷去的大小
+      获取元素内容往左、往上滚出去看不到的距离 这两个值是可读写的
+      开发中，我们经常检测页面滚动的距离，比如页面滚动100像素，就可以显示一个元素，或者固定一个元素
+    </span>
+    <span>
+      3.3页面尺寸事件 会在窗口尺寸改变的时候触发事件： resize
+      window.addEventListener('resize',function )
+    </span>
+    <span>
+      3.3页面尺寸事件-获取元素宽高 获取宽高：
+      获取元素的可见部分宽高（不包含边框，margin，滚动条等）
+      clientwidth和clientHeight即获取的事件.clientwidth和获取的事件.clientHeight
+    </span>
+    <span
+      >4.元素尺寸于位置-尺寸 获取宽高：
+      >获取元素的自身宽高、包含元素自身设置的宽高、padding、border
+      >offsetWidth和offsetHeight >获取出来的是数值，方便计算
+      >注意：获取的是可视宽高，如果盒子是隐藏的，获取的结果是0
+      >获取元素距离自己定位 父级元素 的左、上距离
+      offsetLeft和offsetTop注意是只读属性
+    </span>
+    <span>
+      4.元素尺寸于位置-尺寸 获取位置： 2.element.getBoundingClientRect()
+      方法返回元素的大小及其相对于视口的位置
+    </span>
+    <div>
+      scrollLeft和scrollTop 被卷去的头部和左侧 配合页面滚动来用，可读写
+      clientWidth 和 clientHeight获得元素宽度和高度
+      不包含border,margin，滚动条用于js获取元素大小，只读属性
+      offsetWidth和offsetHeight 获得元素宽度和高度
+      包含border、padding，滚动条等，只读
+      offsetLeft和offsetTop获取元素距离自己定位父级元素的左、上距离
+      获取元素位置的时候使用，只读属性
+    </div>
+    <script>
+      document.documentElement.scrollTop = 300;
+      //   document.addEventListener('DOMContentLoaded',function(){
+      //     // document.documentElement.scrollTop = 300;
+      //   })
+      window.addEventListener("scroll", function () {
+        // console.log(1);
+
+        // 我想知道页面到底滚动了多少像素，被卷去了多少
+        // scrollTop
+        // 获取html元素写法
+        // document.documentElement
+        console.log(document.documentElement.scrollTop);
+      });
+      span = document.querySelector("span");
+      span.addEventListener("scroll", function () {
+        console.log(span.scrollTop);
+      });
+    </script>
+  </body>
+</html>

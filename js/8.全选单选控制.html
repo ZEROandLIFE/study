@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      li {
+        list-style: none;
+      }
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f5f5f5;
+        padding: 20px;
+      }
+      .container {
+        width: 800px;
+        /* height: 500px; */
+        background-color: white;
+        margin: 100px auto;
+        border-radius: 8px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      td,
+      th {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        height: 30px;
+        line-height: 30px;
+      }
+      th{
+        background-color: #34495e;
+            color: white;
+      }
+      tr:hover {
+            background-color: #f9f9f9;
+        }
+      input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+      }
+      .total{
+        background-color: #9b7d7d;
+        padding: 15px;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <table>
+        <tr>
+          <th><input type="checkbox" id="checkAll" /></th>
+          <th>物品</th>
+          <th>价格</th>
+        </tr>
+        <tr>
+          <td><input type="checkbox" class="ck" /></td>
+          <td>自瞄</td>
+          <td>1000</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" class="ck" /></td>
+          <td>透视</td>
+          <td>999</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" class="ck" /></td>
+          <td>雷达</td>
+          <td>114</td>
+        </tr>
+      </table>
+      <div class="total">
+        总价 100元
+      </div>
+    </div>
+    <script>
+      const checkAll = document.querySelector("#checkAll");
+      const checks = document.querySelectorAll(".ck");
+      checkAll.addEventListener("click", function () {
+        for (let i = 0; i < checks.length; i++) {
+          checks[i].checked = this.checked;
+        }
+      });
+      for (let i = 0; i < checks.length; i++) {
+        checks[i].addEventListener("click", function () {
+          if (checks.length === document.querySelectorAll(".ck:checked").length)
+            checkAll.checked = true;
+          else checkAll.checked = false;
+        });
+      }
+      function count(){
+        let total=0
+        cksed=document.querySelectorAll(".ck:checked ")
+
+      }
+    </script>
+  </body>
+</html>

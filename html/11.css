@@ -1,0 +1,165 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+li {
+    list-style: none;
+}
+.wrapper{
+    margin: 0 auto;
+    width: 1200px;
+}
+.translation{
+    width: 300px;
+    height: 300px;
+    margin: 200px auto;
+    background: pink;
+}
+.father{
+    width: 200px;
+    height: 200px;
+    margin: 100px auto;
+    border: 1px solid black;
+}
+.son{
+    width: 100px;
+    height: 100px;
+    background: pink;
+    transition: all 0.5s;
+}
+/* 鼠标移入父亲，son移动 */
+.father:hover .son{
+    /* .father: hover之间不能有空格，写成.father : hover就会不执行 */
+    transform: translate(100px,100px);
+    transform: translate(100%,100%);
+    /* 参照盒子自身尺寸 */
+
+}
+.father1{
+    width: 500px;
+    height: 300px;
+    margin: 100px auto;
+    display: flex;
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #000;
+    overflow: hidden;
+}
+.son1{
+    position: absolute;
+    width: 50%;
+    height: 300px;
+    background-color: blue;
+    transition: all 1s;
+}
+.son2 {
+    position: absolute;
+    width: 50%;
+    height: 300px;
+    transform: translate(100%);
+    background-color: red;
+    transition: all 1s;
+    /* 这个可以直接用一张图片，这个句子可以之间显示右半边 */
+    /* background-position: right 0; */
+}
+.father1:hover .son1{
+   transform: translate(-37%);
+
+}
+.father1:hover .son2 {
+    transform: translate(137%);
+
+}
+.ro{
+    width: 100px;
+    height: 100px;
+    margin: 100px auto;
+    border-radius: 20%;
+    background-color: pink;
+    transition: all 1s;
+}
+.ro:hover{
+    transform: rotate(360deg)
+}
+
+.aa{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 100px auto;
+    background-color: pink;
+    display: flex;
+    overflow: hidden;
+}
+.bb{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    left: 50%;
+    Top: 50%;
+    transform: translate(-50%,-50%);
+    background-color: black;
+    opacity:0;
+    transition:all 1s;
+}
+.aa:hover .bb{
+    transform:translate(-50%, -50%) scale(0.1);
+    /* 记得要把translate(-50%, -50%)时刻带上，不然丢失会导致无法剧中 */
+    opacity: 1;
+
+}
+.skew1{
+    width: 100px;
+    height: 100px;
+    margin: 100px auto;
+    background-color: pink;
+    transition: all 1s;
+}
+.skew1:hover {
+    transform: skew(30deg);
+}
+.liner{
+    width: 100px;
+    height: 100px;
+    margin: 100px auto;
+    background-color: pink;
+    /* background-image:linear-gradient(
+        to right,
+        red,green,blue,pink
+    );
+    background-image:linear-gradient(
+        45deg,
+        red 60%
+        ,green,blue,pink
+    ) */
+    opacity: 1;
+}
+.liner:hover{
+    background-image: linear-gradient(transparent,
+        rgba(0, 0, 0, 0.5)
+    )
+}
+.radial {
+    width: 100px;
+    height: 100px;
+    margin: 100px auto;
+    background-color: pink;
+    border-radius: 50%;
+    background-image:radial-gradient(
+        50px at center center,
+        red,pink
+    );
+    background-image: radial-gradient(
+        50px 20px at center center,
+        red, pink
+    );
+    background-image: radial-gradient(
+        50px at 10px 10px,
+        red, pink
+    );
+    background-image: radial-gradient(30px at 30px 20px,
+                rgba(255, 255, 255, 0.2),
+                transparent);
+    
+}

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      li {
+        list-style: none;
+      }
+      .container {
+        margin: 100px auto;
+        width: 900px;
+        height: 500px;
+        background-color: bisque;
+      }
+      h1 {
+        text-align: center;
+      }
+      .info {
+        background-color: #eee;
+        height: 80px;
+        width: 100%;
+        margin: 20px auto;
+        text-align: center;
+      }
+      input {
+        width: 120px;
+        height: 20px;
+        margin: 20px;
+      }
+      select {
+        width: 120px;
+        height: 20px;
+        margin: 20px;
+      }
+      button {
+        width: 120px;
+        height: 30px;
+        margin: 20px;
+      }
+      table {
+        width: 90%;
+        border-collapse: collapse;
+        margin: 20px auto;
+      }
+
+      th,
+      td {
+        text-align: center;
+        padding: 8px;
+        border: 1px solid #ddd;
+        margin: 20px;
+      }
+      tr:nth-child(2n) {
+        background-color: beige;
+      }
+      tr:nth-child(2n + 1) {
+        background-color: azure;
+      }
+      th {
+        background-color: #fff;
+      }
+      
+      .delete:hover{
+        cursor:pointer;
+        color:blue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>学生管理系统</h1>
+      <form action="#" class="info">
+        姓名:
+        <input type="text" class="name" />
+        年龄:
+        <input type="text" class="age" />
+        性别:
+        <select name="gender" id="" class="gender">
+          <option value="男">男</option>
+          <option value="女">女</option>
+          <option value="武装直升机" selected>武装直升机</option>
+        </select>
+        <button type="submit">提交</button>
+      </form>
+      <table>
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>性别</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </body>
+  <script>
+    const name = document.querySelector(".name");
+    const age = document.querySelector(".age");
+    const gender = document.querySelector(".gender");
+    const tbody = document.querySelector("tbody");
+    const info = document.querySelector(".info");
+
+    // const arr = [
+    //   { id: 1, name: "1", age: 12, gender: "男" },
+    //   { id: 2, name: "2", age: 12, gender: "男" },
+    //   { id: 3, name: "3", age: 12, gender: "男" },
+    // ];
+    // localStorage.setItem('arrs',JSON.stringify(arr))
+    // console.log(JSON.parse(localStorage.getItem('arrs')));
+    const arr=JSON.parse(localStorage.getItem('arrs'))
+    //渲染函数
+    function render() {
+      tbody.innerHTML = "";
+      const arrs=JSON.parse(localStorage.getItem('arrs'))
+      // const arrs=arr
+      let len = arrs.length;
+      for (let i = 0; i < len; i++) {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td>${arrs[i].id}</td>
+        <td>${arrs[i].name} </td>
+        <td>${arrs[i].age} </td>
+        <td>${arrs[i].gender} </td>
+        <td class="delete" data-id=${i}>删除</td>`;
+        console.log(arrs[i]);
+        tbody.appendChild(tr);
+      }
+    }
+    render();
+    //提交
+    info.addEventListener("submit", function () {
+      const obj = {
+        id: arr[arr.length - 1].id + 1,
+        name: name.value,
+        age: age.value,
+        gender: gender.value,
+      };
+      console.log(obj.id)
+      if (obj.id && obj.name && obj.age && obj.gender) {
+        arr.push(obj);
+        localStorage.setItem('arrs',JSON.stringify(arr))
+        console.log(JSON.parse(localStorage.getItem('arrs')));
+        this.reset();
+        render();
+      } else {
+        alert("有内容没填，请重试");
+      }
+
+    });
+    //删除
+    tbody.addEventListener("click", function (e) {
+      // console.log(1);
+      // console.log(e.target);
+      if (e.target.classList.contains("delete"))
+        //e.target.tagName===''这个是找名字的
+        // console.log(e.target.dataset.id)
+        arr.splice(e.target.dataset.id, 1);
+        localStorage.setItem('arrs',JSON.stringify(arr))
+      render();
+    });
+    
+  </script>
+</html>

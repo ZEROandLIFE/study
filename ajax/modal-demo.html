@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>弹窗组件学习</title>
+    <link
+      rel="stylesheet"
+      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <style>
+      .demo-section {
+        margin-bottom: 3rem;
+        padding: 2rem;
+        border: 1px solid #dee2e6;
+        border-radius: 0.375rem;
+      }
+      .code-block {
+        background: #f8f9fa;
+        padding: 1rem;
+        border-radius: 0.375rem;
+        font-family: monospace;
+        margin-top: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">← 返回</a>
+        <span class="navbar-text">弹窗组件学习</span>
+      </div>
+    </nav>
+
+    <div class="container my-4">
+      <h1 class="mb-4">Bootstrap 弹窗学习</h1>
+
+      <!-- 基础弹窗示例 -->
+      <div class="demo-section">
+        <h3>1. 基础弹窗</h3>
+        <p>最简单的弹窗示例</p>
+
+        <!-- 触发按钮 -->
+        <button
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#basicModal"
+        >
+          打开基础弹窗
+        </button>
+
+        <!-- 弹窗代码 -->
+        <div class="modal fade" id="basicModal" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">基础弹窗标题</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <p>这是一个基础弹窗的内容区域。</p>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  关闭
+                </button>
+                <button type="button" class="btn btn-primary">保存</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          &lt;!-- 触发按钮 --&gt;<br />
+          &lt;button class="btn btn-primary" data-bs-toggle="modal"
+          data-bs-target="#basicModal"&gt;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;打开基础弹窗<br />
+          &lt;/button&gt;<br />
+          <br />
+          &lt;!-- 弹窗代码 --&gt;<br />
+          &lt;div class="modal fade" id="basicModal" tabindex="-1"&gt;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="modal-dialog"&gt;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div
+          class="modal-content"&gt;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div
+          class="modal-header"&gt;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h5
+          class="modal-title"&gt;基础弹窗标题&lt;/h5&gt;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button
+          type="button" class="btn-close"
+          data-bs-dismiss="modal"&gt;&lt;/button&gt;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div
+          class="modal-body"&gt;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;这是一个基础弹窗的内容区域。&lt;/p&gt;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div
+          class="modal-footer"&gt;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button
+          type="button" class="btn btn-secondary"
+          data-bs-dismiss="modal"&gt;关闭&lt;/button&gt;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button
+          type="button" class="btn btn-primary"&gt;保存&lt;/button&gt;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />
+          &lt;/div&gt;
+        </div>
+      </div>
+
+      <!-- 不同尺寸弹窗 -->
+      <div class="demo-section">
+        <h3>2. 不同尺寸弹窗</h3>
+        <p>Bootstrap 提供多种尺寸的弹窗</p>
+
+        <button
+          class="btn btn-success me-2"
+          data-bs-toggle="modal"
+          data-bs-target="#smallModal"
+        >
+          小弹窗
+        </button>
+        <button
+          class="btn btn-warning me-2"
+          data-bs-toggle="modal"
+          data-bs-target="#largeModal"
+        >
+          大弹窗
+        </button>
+        <button
+          class="btn btn-danger"
+          data-bs-toggle="modal"
+          data-bs-target="#extraLargeModal"
+        >
+          超大弹窗
+        </button>
+
+        <!-- 小弹窗 -->
+        <div class="modal fade" id="smallModal" tabindex="-1">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-body">
+                <p>这是一个小弹窗</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 大弹窗 -->
+        <div class="modal fade" id="largeModal" tabindex="-1">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-body">
+                <p>这是一个大弹窗，适合显示更多内容</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 超大弹窗 -->
+        <div class="modal fade" id="extraLargeModal" tabindex="-1">
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-body">
+                <p>这是一个超大弹窗，适合宽屏内容</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 带表单的弹窗 -->
+      <div class="demo-section">
+        <h3>3. 带表单的弹窗</h3>
+        <p>在弹窗中嵌入表单元素</p>
+
+        <button
+          class="btn btn-info"
+          data-bs-toggle="modal"
+          data-bs-target="#formModal"
+        >
+          打开表单弹窗
+        </button>
+
+        <div class="modal fade" id="formModal" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">用户注册</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="mb-3">
+                    <label class="form-label">用户名</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="请输入用户名"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">邮箱</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      placeholder="请输入邮箱"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">密码</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      placeholder="请输入密码"
+                    />
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  取消
+                </button>
+                <button type="button" class="btn btn-primary">注册</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- JavaScript 控制弹窗 -->
+      <div class="demo-section">
+        <h3>4. JavaScript 控制弹窗</h3>
+        <p>通过 JavaScript 代码控制弹窗的显示和隐藏</p>
+
+        <button class="btn btn-dark me-2" onclick="showModal()">
+          JS 打开弹窗
+        </button>
+        <button class="btn btn-outline-dark" onclick="hideModal()">
+          JS 关闭弹窗
+        </button>
+
+        <div class="modal fade" id="jsModal" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-body">
+                <p>这个弹窗是通过 JavaScript 控制的</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          // 获取弹窗实例<br />
+          const jsModal = new
+          bootstrap.Modal(document.getElementById('jsModal'))<br />
+          <br />
+          // 显示弹窗<br />
+          function showModal() {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;jsModal.show()<br />
+          }<br />
+          <br />
+          // 隐藏弹窗<br />
+          function hideModal() {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;jsModal.hide()<br />
+          }<br />
+          <br />
+          // 事件监听<br />
+          document.getElementById('jsModal').addEventListener('show.bs.modal',
+          function() {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;console.log('弹窗即将显示')<br />
+          })
+        </div>
+      </div>
+    </div>
+
+    <!-- 引入本地的 Bootstrap JS -->
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // JavaScript 控制弹窗的代码
+      const jsModal = new bootstrap.Modal(document.getElementById("jsModal"));
+
+      function showModal() {
+        jsModal.show();
+      }
+
+      function hideModal() {
+        jsModal.hide();
+      }
+
+      // 事件监听示例
+      document
+        .getElementById("jsModal")
+        .addEventListener("show.bs.modal", function () {
+          console.log("弹窗即将显示");
+        });
+
+      document
+        .getElementById("jsModal")
+        .addEventListener("shown.bs.modal", function () {
+          console.log("弹窗已显示");
+        });
+    </script>
+  </body>
+</html>

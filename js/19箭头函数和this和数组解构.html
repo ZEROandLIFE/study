@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //   const fn = function () {
+      //     console.log(1);
+      //   };
+      //   const fn = (a, b) => {
+      //     console.log(2);
+      //   };
+      //   const fn = (x) => {
+      //     console.log(x);
+      //   };
+      //   const fn = (x) => console.log(x);
+      //   fn(1);
+      //   const fn = (...arr) => {
+      //     for (let i = 0; i < arr.length; i++) console.log(arr[i]);
+      //   };
+      //   fn(3, 4, 5);
+
+      // 普通函数（非箭头函数）的 this 在调用时动态绑定，指向调用该函数的对象（即“谁调用它，this 就指向谁”）。
+      //   function foo() {
+      //     console.log(this); // 指向全局对象（浏览器中是 `window`，Node.js 中是 `global`）
+      //   }
+      //   foo(); // 严格模式下为 `undefined`
+      //   const obj = {
+      //     name: "Alice",
+      //     greet: function () {
+      //       console.log(this.name); // 指向调用它的对象 `obj`
+      //     },
+      //   };
+      //   obj.greet(); // 输出 "Alice"
+
+      //   function greet() {
+      //     console.log(this.name);
+      //   }
+      //   const user = { name: "Bob" };
+      //   greet.call(user); // 输出 "Bob"（`this` 被绑定到 `user`）
+
+      //   对象方法的 this 默认指向调用该方法的对象，但如果方法被提取出来单独调用，this 会丢失绑定。
+      //   const person = {
+      //     name: "Charlie",
+      //     sayHi: function () {
+      //       console.log(`Hi, I'm ${this.name}`);
+      //     },
+      //   };
+      //   person.sayHi(); // 输出 "Hi, I'm Charlie"（`this` 指向 `person`）
+
+      //   const sayHi = person.sayHi;
+      //   sayHi(); // 输出 "Hi, I'm undefined"（`this` 指向全局对象或 `undefined`）
+
+      //   const sayHi = person.sayHi.bind(person);
+      //   sayHi(); // 输出 "Hi, I'm Charlie"
+
+      //   箭头函数没有自己的 this，它的 this 继承自定义时的外层作用域（词法作用域）
+
+      //   const obj = {
+      //     name: "Dave",
+      //     greet: () => {
+      //       console.log(this.name); // 箭头函数的 `this` 是外层的 `this`（如 `window`）
+      //     },
+      //   };
+      //   obj.greet(); // 输出 `undefined`（浏览器中 `window.name` 默认为空）
+      //   function Person() {
+      //     this.name = "Eve";
+      //     this.sayHi = () => {
+      //       console.log(`Hi, I'm ${this.name}`); // `this` 继承自 `Person` 构造函数
+      //     };
+      //   }
+      //   const eve = new Person();
+      //   eve.sayHi(); // 输出 "Hi, I'm Eve"
+
+      // call()
+      // 作用：立即调用函数并指定 this 值和参数列表（逐个传递）。
+      // 语法：
+      // func.call(thisArg, arg1, arg2, ...);
+      // thisArg：绑定到函数的 this 值。
+      // arg1, arg2, ...：逐个传递的参数。
+      // function greet(name, age) {
+      //   console.log(`Hello, ${name}! You are ${age} years old.`);
+      //   console.log("This points to:", this);
+      // }
+      // const person = { hobby: "coding" };
+      // // 使用 call 绑定 this 并传递参数
+      // greet.call(person, "Alice", 25);
+      // // 输出：
+      // // Hello, Alice! You are 25 years old.
+      // // This points to: { hobby: "coding" }
+
+      // apply()
+      // 作用：立即调用函数，并指定 this 值和参数数组（数组形式传递）。
+      // func.apply(thisArg, [arg1, arg2, ...]);
+      // thisArg：绑定到函数的 this 值。
+      // [arg1, arg2, ...]：参数数组（或类数组对象）。
+      // function greet(name, age) {
+      //   console.log(`Hello, ${name}! You are ${age} years old.`);
+      //   console.log("This points to:", this);
+      // }
+
+      // const person = { hobby: "coding" };
+      // const args = ["Bob", 30];
+
+      // // 使用 apply 绑定 this 并传递参数数组
+      // greet.apply(person, args);
+      // // 输出：
+      // // Hello, Bob! You are 30 years old.
+      // // This points to: { hobby: "coding" }
+      // // call 接收参数列表，apply 接收参数数组。
+      // // 在性能敏感的场景中，call 可能略快（因为无需展开数组）。
+
+      // bind()
+      // 作用：返回一个新函数，其 this 值永久绑定到指定的对象，但不会立即调用。
+      // const boundFunc = func.bind(thisArg, arg1, arg2, ...);
+      // thisArg：绑定到新函数的 this 值。
+      // arg1, arg2, ...（可选）：预先绑定的部分参数（柯里化）。
+      // function greet(name, age) {
+      //   console.log(`Hello, ${name}! You are ${age} years old.`);
+      //   console.log("This points to:", this);
+      // }
+
+      // const person = { hobby: "coding" };
+      // const boundGreet = greet.bind(person);
+
+      // // 调用绑定后的函数（可以后续再传参）
+      // boundGreet("Charlie", 28);
+      // // 输出：
+      // // Hello, Charlie! You are 28 years old.
+      // // This points to: { hobby: "coding" }
+      // const [name, age] = ["卢本伟", 18];
+      // console.log(name, age);
+
+      // 用于遍历数组并对每个元素执行指定的回调函数。它不会改变原数组，也没有返回值（返回 undefined），但可以通过回调函数修改外部变量或数组元素（如果数组元素是对象引用）。
+      // array.forEach(function (currentValue, index, array) {
+      //   // 对每个元素执行的逻辑
+      // }, thisArg); // 可选的 this 绑定
+      // 回调函数（必填）：
+      // currentValue：当前处理的数组元素。
+      // index（可选）：当前元素的索引。
+      // array（可选）：正在遍历的数组本身。
+      // thisArg（可选）：指定回调函数中 this 的值（通常很少使用）
+      // const fruits = ["apple", "banana", "cherry"];
+      // fruits.forEach(function (fruit, index) {
+      //   console.log(`${index + 1}. ${fruit}`);
+      // });
+
+      // // 输出：
+      // // 1. apple
+      // // 2. banana
+      // // 3. cherry
+      // const numbers = [1, 2, 3];
+      // numbers.forEach((num) => console.log(num * 2));
+      // // 输出：2, 4, 6
+
+      // const newArray = array.filter(function (currentValue, index, array) {
+      //   return condition; // 返回 true 的元素会被保留
+      // }, thisArg); // 可选的 this 绑定（很少使用）
+
+      // const numbers = [1, 2, 3, 4, 5];
+      // const evens = numbers.filter((num) => num % 2 === 0);
+      // console.log(evens); // 输出: [2, 4]
+
+      // const result = array.reduce(function (
+      //   accumulator,
+      //   currentValue,
+      //   currentIndex,
+      //   array
+      // ) {
+      //   // 返回累加器的更新值
+      // },
+      // initialValue);
+      // 回调函数（必填）：
+      // accumulator：累加器，存储每次计算的中间结果。
+      // currentValue：当前处理的数组元素。
+      // currentIndex（可选）：当前元素的索引。
+      // array（可选）：正在遍历的数组本身。
+      // initialValue（可选）：
+      // 累加器的初始值。如果省略，默认使用数组的第一个元素作为初始值（此时从第二个元素开始遍历）。
+      const numbers = [1, 2, 3, 4];
+
+      // 不提供 initialValue（默认第一个元素是初始值）
+      const sum1 = numbers.reduce((acc, num) => acc + num);
+      console.log(sum1); // 输出: 10 (1 + 2 + 3 + 4)
+
+      // 提供 initialValue（更安全，推荐）
+      const sum2 = numbers.reduce((acc, num) => acc + num, 0);
+      console.log(sum2); // 输出: 10 (0 + 1 + 2 + 3 + 4)
+    </script>
+  </body>
+</html>

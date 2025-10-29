@@ -1,0 +1,23 @@
+{
+  "id": "5042631",
+  "name": "study",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "9114380",
+      "name": "33左侧",
+      "font_class": "zuoce",
+      "unicode": "e63c",
+      "unicode_decimal": 58940
+    },
+    {
+      "icon_id": "9114384",
+      "name": "34右侧",
+      "font_class": "youce",
+      "unicode": "e63d",
+      "unicode_decimal": 58941
+    }
+  ]
+}

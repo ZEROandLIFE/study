@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        margin: 100px auto;
+        background-color: pink;
+        text-align: center;
+        line-height: 100px;
+      }
+      .sp {
+        width: 100px;
+        height: 100px;
+        margin: 100px auto;
+        background-color: pink;
+        text-align: center;
+        line-height: 100px;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="" alt="" />
+    <div class="learn">
+      4.2操作元素样式属性 还可以通过JS设置/修改标签元素的样式属性。
+      比如通过轮播图小圆点自动更换颜色样式
+      点击按钮可以滚动图片，这是移动的图片的位置left等等 学习路径：
+      1.通过style属性操作CSS 2.操作类名(className)操作CSS
+      3.通过classList操作类控制cSS
+    </div>
+    <div class="box">box</div>
+    <span>
+      4.2操作元素样式属性 2.操作类名(className)操作CSS
+      如果修改的样式比较多，直接通过style属性修改比较繁琐，我们可以通过借助于css类名的形式。
+      语法： //active 是一个css类名 元素.className='active' 注意：
+      1.由于class是关键字，所以使用className去代替
+      2.className是使用新值换旧值，如果需要添加一个类，需要保留之前的类名
+    </span>
+    <strong>
+      3.通过classList操作类控制css
+      为了解决className容易覆盖以前的类名，我们可以通过classList方式追加和删除类名
+      语法： 追加一个类 add每次只能添加一个元素 元素.classList.add('类名')
+      删除一个类 元素.classList.remove('类名'） 切换一个类(类似取反操作)
+      元素.classList.toggle('类名')
+    </strong>
+    <span>
+      操作表单元素属性
+      表单很多情况，也需要修改属性，比如点击眼睛，可以看到密码，本质是把表单类型转换为文本框
+      正常的有属性有取值的跟其他的标签属性没有任何区别 获取：DOM对象.属性名
+      设置:DOM对象.属性名=新值 表单.value='用户名' 表单.type='password'
+    </span>
+    <input type="text" name="" id="" placeholder="666" value="" />
+    <input type="checkbox" name="" id="" checked />
+    <button>点击</button>
+
+    <div data-id="1" data-name="aaa">
+      自定义属性： 在html5中推出来了专门的data-自定义属性
+      在标签上一律以data-开头 在DOM对象上一律以dataset对象方式获取
+    </div>
+  </body>
+  <script>
+    // 修改图片的
+    // const img=document.querySelector('img')
+    // img.src="./37.jpg"
+    // img.title='37的图片'
+
+    //直接通过style修改
+    // const box=document.querySelector('.box')
+    // box.style.width='200px'
+    // box.backgroundColor='red'//遇到-使用驼峰命名
+
+    //添加className
+    // const sp=document.querySelector('span')
+    // sp.className='sp'
+
+    //通过classList修改
+    // const st = document.querySelector("strong"); //span:nth-of-type(2)
+    // console.log(st);
+    // st.classList.add("box");
+    // st.classList.add("sp");
+    // st.classList.remove("sp");
+    // st.classList.toggle("box");
+
+    //修改表单
+    // const nm=document.querySelector('input')
+    // nm.type='password'
+    // nm.value="888"
+    // console.log(nm.type)
+    // console.log(nm.value)
+
+    // const nm=document.querySelector('input:nth-of-type(2)')
+    // console.log(nm.checked);
+    // nm.disabled=true
+    // console.log(nm.disabled);
+
+    // const butt=document.querySelector('button')
+    // butt.disabled=true
+
+    //自定义属性
+    const da = document.querySelector('[data-id="1"]'); // 精确匹配 data-id="1"
+    console.log(da); // 现在可以正确选中 <div>
+    const dat=document.querySelector('div:nth-of-type(3)')
+    console.log(dat);
+    console.log(dat.dataset)
+    console.log(dat.dataset.id)
+  </script>
+</html>
