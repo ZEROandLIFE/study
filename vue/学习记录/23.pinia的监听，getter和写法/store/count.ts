@@ -12,4 +12,11 @@ export const useCountStore = defineStore("count", {
       sum: 6,
     };
   },
+  getters: {
+    getbigger(state) {
+      return state.sum*10
+    },
+    getbig: state => state.sum * 3,
+
+  }
 });
