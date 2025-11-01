@@ -1,6 +1,6 @@
 <template>
   <div class="count">
-    <p>计数{{ countStore.sum }}</p>
+    <p>计数{{ countStore.sum }},放大十倍后{{ getbigger }}</p>
 
     <select name="" id="" v-model.number="n">
       <option value="1">1</option>
@@ -22,7 +22,7 @@
   console.log(countStore.sum);
   console.log(countStore.$state.sum);
   //用这个可以把所有数据变成响应式的，不会变别的
-  const { sum } = storeToRefs(countStore);
+  const { sum,getbigger } = storeToRefs(countStore);
 
   let n = ref(1);
   function addSum() {

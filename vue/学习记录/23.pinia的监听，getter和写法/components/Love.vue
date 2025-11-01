@@ -13,7 +13,10 @@ import { reactive } from "vue";
 import axios from 'axios'
 import { useLoveStore} from '../store/love.ts'
 const lovestore = useLoveStore()
-    console.log(lovestore.loveList)
+console.log(lovestore.loveList)
+// lovestore.$subscribe(() => {
+//       console.log('这里面的数据变化了')
+//     })
   let newid=4
 function getTalk() {
     lovestore.gettalk(newid)
