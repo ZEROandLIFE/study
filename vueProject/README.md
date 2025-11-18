@@ -1,13 +1,6 @@
-# tomato
-大二简单完成的番茄商城，实现本地mysql存储和阿里云上传图片的功能（没续费，已过期）同时这是学习前端的一个原因————看起来比较有趣。但是因为没有系统完整学习而比较简陋。同时由本人一人完成前端实现
-
-github链接：https://github.com/qwettjj/tomato.git
-
-实现以下功能：
-
-1.商城界面，商品信息，商品购买，购物车，购买sandbox。
-
-2.用户个人信息，登陆注册，管理员界面，修改上传商品。
-
-3.书友圈，以及内置的评论点赞等功能
-
+# 项目详见文件夹中
+## 完成时间
+### 番茄商城：2025.2-2025.6
+### git链接：https://github.com/qwettjj/tomato
+### 番茄管理系统：2025.11
+### git链接：https://github.com/ZEROandLIFE/Backend-Management-System
