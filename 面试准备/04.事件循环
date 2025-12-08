@@ -1,0 +1,38 @@
+同步代码执行：一开始，所有同步代码（即“初始的宏任务”）会被依次压入调用栈执行，直到栈清空。
+检查微任务队列：
+每当调用栈被清空（一个宏任务执行完毕），Event Loop会立即检查微任务队列。
+如果队列中有微任务，Event Loop会连续、一次性地执行所有微任务，直到微任务队列完全清空。
+注意：在执行微任务的过程中，如果又产生了新的微任务，这些新微任务也会被加入到当前队列末尾，并在本次检查中被一并执行完（这就是“饿死”现象的可能原因）。
+UI渲染（如需要）：
+浏览器会根据自己的刷新率（如60Hz，约16.6ms一帧）来决定是否进行页面渲染。渲染发生在一次Event Loop循环中微任务清空之后、下一个宏任务执行之前。但这不是强制的，浏览器会优化。
+取出并执行下一个宏任务：
+完成上述步骤后，Event Loop会从宏任务队列的队首取出一个最老的宏任务，压入调用栈开始执行。
+然后，回到第2步，开启新一轮的循环。
+
+同步 > 微任务 > 宏任务
+这是最基本的优先级。
+微任务插队规则：“一个宏任务，一队微任务”
+每个宏任务执行完后，必须清空当前所有的微任务队列，才能执行下一个宏任务。
+宏任务来源：script（整体代码）, setTimeout, setInterval, setImmediate(Node), I/O, UI渲染, DOM事件回调。
+微任务来源：Promise.then/catch/finally, MutationObserver, queueMicrotask, async/await。
+
+console.log('1. 同步开始'); // 同步
+
+setTimeout(() => {
+    console.log('2. setTimeout 1'); // 宏任务
+    Promise.resolve().then(() => {
+        console.log('3. Promise in setTimeout'); // 微任务
+    });
+}, 0);
+
+Promise.resolve().then(() => {
+    console.log('4. Promise 1'); // 微任务
+    return Promise.resolve(); // 注意：这个决议会产生一个额外的微任务！根据规范，一个“已决议的Promise”调用 .then 时，这个 .then 的回调会被作为一个新的微任务，放入当前微任务队列末尾。
+}).then(() => {
+    console.log('5. Promise 2'); // 微任务
+});
+
+console.log('6. 同步结束'); // 同步
+
+// 输出顺序分析如下
+164523
