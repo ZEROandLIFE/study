@@ -41,13 +41,13 @@
     <div>
       1.5 解绑事件 addEventListener方式，必须使用：
       removeEventListener(事件类型，事件处理函数，[获取捕获或者冒泡阶段]) 例如：
-      function fn(){ alert('点击了') 川绑定事件 btn.addEventListener('click',fn)
-      川解绑事件 btn.removeEventListener('click',fn) 注意：匿名函数无法被解绑
+      function fn(){ alert('点击了') }绑定事件 btn.addEventListener('click',fn)
+      解绑事件 btn.removeEventListener('click',fn) 注意：匿名函数无法被解绑
     </div>
     <div>
       两种注册事件的区别 传统on注册（LO）
       >同一个对象，后面注册的事件会覆盖前面注册（同一个事件）
-      >直接使用null覆盖偶就可以实现事件的解绑 >都是冒泡阶段执行的
+      >直接使用null覆盖就可以实现事件的解绑 >都是冒泡阶段执行的
       ●事件监听注册（L2）
       >语法：addEventListener(事件类型，事件处理函数，是否使用捕获）
       后面注册的事件不会覆盖前面注册的事件（同一个事件）
