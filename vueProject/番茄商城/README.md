@@ -80,22 +80,6 @@ github链接：https://github.com/qwettjj/tomato.git
 - **类型安全** - 完整的TypeScript类型定义
 - **错误处理** - 统一的请求拦截和错误处理
 
-### 状态管理
-```typescript
-// Pinia状态管理示例
-const useUserStore = defineStore('user', {
-  state: () => ({
-    token: sessionStorage.getItem('token'),
-    userInfo: null
-  }),
-  actions: {
-    async login(credentials) {
-      // 登录逻辑
-    }
-  }
-})
-
-```
 
 ### 路由守卫
 ```typescript
